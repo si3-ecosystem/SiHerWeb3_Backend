@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 
 const authRoutes = require("./routes/auth.routes")
+const webpageRoutes = require("./routes/webpage.routes")
 
 const app = express()
 app.use(express.json())
@@ -13,6 +14,7 @@ mongoose
   .then(() => console.log("MongoDB connected"))
 
 app.use("/api/auth", authRoutes)
+app.use("/api/webpage", webpageRoutes)
 
 app.get("/", (_, res) => {
   return res.send("App")
