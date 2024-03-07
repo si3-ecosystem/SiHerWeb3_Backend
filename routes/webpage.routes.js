@@ -8,6 +8,7 @@ const Webpage = require("../models/Webpage.model")
 const {
   uploadJsonToFileStorage,
   getJsonFromFileStorage,
+  deleteJsonFromFileStorage,
 } = require("../utils/fileStorage.utils")
 
 const router = express.Router()
@@ -48,6 +49,20 @@ router.get("/", auth, async (req, res) => {
   const webpageJson = await getJsonFromFileStorage(cid)
 
   return res.send({ webpage: webpageJson })
+})
+
+router.delete("/", auth, async (req, res) => {
+  const { user } = req
+
+  const webpage = await Webpage.findOne({ user: user._id })
+  if (!webpage) return res.status(404).send("Webpage not found")
+
+  const { cid } = webpage
+  await deleteJsonFromFileStorage(cid)
+
+  await Webpage.findByIdAndDelete(webpage._id)
+
+  return res.send({ webpage })
 })
 
 module.exports = router

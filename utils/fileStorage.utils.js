@@ -23,7 +23,18 @@ const getJsonFromFileStorage = async (cid) => {
   return json
 }
 
+const deleteJsonFromFileStorage = async (cid) => {
+  await fetch(`https://api.pinata.cloud/pinning/unpin/${cid}`, {
+    method: "DELETE",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${PINATA_AUTH_TOKEN}`,
+    },
+  })
+}
+
 module.exports = {
   uploadJsonToFileStorage,
   getJsonFromFileStorage,
+  deleteJsonFromFileStorage,
 }
