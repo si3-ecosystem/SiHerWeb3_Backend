@@ -5,7 +5,10 @@ const auth = require("../middlewares/auth.middleware")
 
 const { validateCreateWebpage } = require("../validations/webpage.validations")
 const Webpage = require("../models/Webpage.model")
-const { uploadJsonToFileStorage } = require("../utils/fileStorage.utils")
+const {
+  uploadJsonToFileStorage,
+  getJsonFromFileStorage,
+} = require("../utils/fileStorage.utils")
 
 const router = express.Router()
 
@@ -18,8 +21,11 @@ router.post("/", auth, async (req, res) => {
   const dbWebpage = await Webpage.findOne({ user: user._id })
   if (dbWebpage) return res.status(400).send("Webpage already exists")
 
-  const buffer = Buffer.from(JSON.stringify(body))
-  const file = new File(buffer, `${uuidv4()}.json`)
+  const jsonData = JSON.stringify(body)
+  const fileBlob = new Blob([jsonData], { type: "application/json" })
+  const file = new File([fileBlob], `${uuidv4()}.json`, {
+    type: "application/json",
+  })
 
   const cid = await uploadJsonToFileStorage(file)
 
@@ -30,6 +36,18 @@ router.post("/", auth, async (req, res) => {
   await webpage.save()
 
   return res.send({ webpage })
+})
+
+router.get("/", auth, async (req, res) => {
+  const { user } = req
+
+  const webpage = await Webpage.findOne({ user: user._id })
+  if (!webpage) return res.status(404).send("Webpage not found")
+
+  const { cid } = webpage
+  const webpageJson = await getJsonFromFileStorage(cid)
+
+  return res.send({ webpage: webpageJson })
 })
 
 module.exports = router

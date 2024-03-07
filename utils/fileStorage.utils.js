@@ -1,4 +1,4 @@
-const { PINATA_URL } = require("../consts")
+const { PINATA_URL, PINATA_GATEWAY } = require("../consts")
 const PINATA_AUTH_TOKEN = process.env.PINATA_AUTH_TOKEN
 
 const uploadJsonToFileStorage = async (file) => {
@@ -17,4 +17,13 @@ const uploadJsonToFileStorage = async (file) => {
   return responseJson.IpfsHash
 }
 
-module.exports = { uploadJsonToFileStorage }
+const getJsonFromFileStorage = async (cid) => {
+  const res = await fetch(`${PINATA_GATEWAY}/${cid}`)
+  const json = await res.json()
+  return json
+}
+
+module.exports = {
+  uploadJsonToFileStorage,
+  getJsonFromFileStorage,
+}
