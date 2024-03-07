@@ -1,4 +1,5 @@
 const express = require("express")
+const { v4: uuidv4 } = require("uuid")
 
 const auth = require("../middlewares/auth.middleware")
 
@@ -18,7 +19,7 @@ router.post("/", auth, async (req, res) => {
   if (dbWebpage) return res.status(400).send("Webpage already exists")
 
   const buffer = Buffer.from(JSON.stringify(body))
-  const file = new File(buffer, "metadata.json")
+  const file = new File(buffer, `${uuidv4()}.json`)
 
   const cid = await uploadJsonToFileStorage(file)
 
