@@ -7,4 +7,12 @@ const generateAuthToken = (user) => {
   return authToken
 }
 
-module.exports = { generateAuthToken }
+const verifyAuthToken = (authToken) => {
+  const user = jwt.verify(authToken, jwtSecret)
+  return user
+}
+
+module.exports = {
+  generateAuthToken,
+  verifyAuthToken,
+}
