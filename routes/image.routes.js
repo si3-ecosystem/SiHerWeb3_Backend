@@ -25,6 +25,20 @@ router.post("/", auth, fileUpload(), async (req, res) => {
   return res.send({ ...image.toJSON(), imageUrl })
 })
 
+router.get("/", auth, async (req, res) => {
+  const { user } = req
+  const { pageNumber, pageSize } = req.query
+
+  const imagesDocs = await Image.find({ user: user._id })
+    .skip((pageNumber - 1) * pageSize)
+    .limit(pageSize)
+  const images = imagesDocs.map((image) => ({
+    ...image.toJSON(),
+    imageUrl: `${PINATA_GATEWAY}/${image.cid}`,
+  }))
+  return res.send({ images })
+})
+
 router.get("/:id", auth, async (req, res) => {
   const { id } = req.params
 
