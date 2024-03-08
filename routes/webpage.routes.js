@@ -6,9 +6,9 @@ const auth = require("../middlewares/auth.middleware")
 const { validateCreateWebpage } = require("../validations/webpage.validations")
 const Webpage = require("../models/Webpage.model")
 const {
-  uploadJsonToFileStorage,
-  getJsonFromFileStorage,
-  deleteJsonFromFileStorage,
+  uploadToFileStorage,
+  getFromFileStorage,
+  deleteFromFileStorage,
 } = require("../utils/fileStorage.utils")
 
 const router = express.Router()
@@ -28,7 +28,7 @@ router.post("/", auth, async (req, res) => {
     type: "application/json",
   })
 
-  const cid = await uploadJsonToFileStorage(file)
+  const cid = await uploadToFileStorage(file)
 
   const webpage = new Webpage({
     user: user._id,
@@ -46,7 +46,7 @@ router.get("/", auth, async (req, res) => {
   if (!webpage) return res.status(404).send("Webpage not found")
 
   const { cid } = webpage
-  const webpageJson = await getJsonFromFileStorage(cid)
+  const webpageJson = await getFromFileStorage(cid)
 
   return res.send({ webpage: webpageJson })
 })
@@ -61,7 +61,7 @@ router.put("/", auth, async (req, res) => {
   if (!dbWebpage) return res.status(404).send("Webpage not found")
 
   const { cid } = dbWebpage
-  await deleteJsonFromFileStorage(cid)
+  await deleteFromFileStorage(cid)
 
   const jsonData = JSON.stringify(body)
   const fileBlob = new Blob([jsonData], { type: "application/json" })
@@ -69,7 +69,7 @@ router.put("/", auth, async (req, res) => {
     type: "application/json",
   })
 
-  const newCid = await uploadJsonToFileStorage(file)
+  const newCid = await uploadToFileStorage(file)
 
   const webpage = await Webpage.findByIdAndUpdate(dbWebpage._id, {
     cid: newCid,
@@ -86,7 +86,7 @@ router.delete("/", auth, async (req, res) => {
   if (!webpage) return res.status(404).send("Webpage not found")
 
   const { cid } = webpage
-  await deleteJsonFromFileStorage(cid)
+  await deleteFromFileStorage(cid)
 
   await Webpage.findByIdAndDelete(webpage._id)
 

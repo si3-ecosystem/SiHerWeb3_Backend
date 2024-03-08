@@ -1,7 +1,7 @@
 const { PINATA_URL, PINATA_GATEWAY } = require("../consts")
 const PINATA_AUTH_TOKEN = process.env.PINATA_AUTH_TOKEN
 
-const uploadJsonToFileStorage = async (file) => {
+const uploadToFileStorage = async (file) => {
   const formData = new FormData()
   formData.append("file", file)
 
@@ -17,13 +17,13 @@ const uploadJsonToFileStorage = async (file) => {
   return responseJson.IpfsHash
 }
 
-const getJsonFromFileStorage = async (cid) => {
+const getFromFileStorage = async (cid) => {
   const res = await fetch(`${PINATA_GATEWAY}/${cid}`)
   const json = await res.json()
   return json
 }
 
-const deleteJsonFromFileStorage = async (cid) => {
+const deleteFromFileStorage = async (cid) => {
   await fetch(`https://api.pinata.cloud/pinning/unpin/${cid}`, {
     method: "DELETE",
     headers: {
@@ -34,7 +34,7 @@ const deleteJsonFromFileStorage = async (cid) => {
 }
 
 module.exports = {
-  uploadJsonToFileStorage,
-  getJsonFromFileStorage,
-  deleteJsonFromFileStorage,
+  uploadToFileStorage,
+  getFromFileStorage,
+  deleteFromFileStorage,
 }
