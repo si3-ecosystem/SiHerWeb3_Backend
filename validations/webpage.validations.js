@@ -1,9 +1,13 @@
-const Joi = require("joi")
-const { validate } = require(".")
+const Joi = require("joi");
+const { validate } = require(".");
 
 const createWebpageSchema = Joi.object({
   navbar: Joi.object({
-    logo: Joi.string().required().label("Logo"),
+    logo: Joi.object({
+      path: Joi.string().uri().label("Logo Path"),
+      id: Joi.string().allow(null).label("Logo Id"),
+    }).required(),
+    // logo: Joi.string().required().label("Logo"),
     imageAltText: Joi.string().required().label("Image alt text"),
     websiteName: Joi.string().required().label("Website Name"),
     links: Joi.array()
@@ -33,7 +37,11 @@ const createWebpageSchema = Joi.object({
       .required()
       .min(1)
       .label("Categories"),
-    userimg: Joi.string().uri().required().label("User Image"),
+    userimg: Joi.object({
+      path: Joi.string().uri().label("Image Path"),
+      id: Joi.string().allow(null).label("Image Id"),
+    }).required(),
+    // userimg: Joi.string().uri().required().label("User Image"),
     name: Joi.string().required().label("Name"),
     pronoun: Joi.string().required().label("Pronoun"),
     marquee: Joi.array()
@@ -46,7 +54,11 @@ const createWebpageSchema = Joi.object({
     title: Joi.string().required().label("Value Title"),
     description: Joi.string().required().label("Value Description"),
     TVName: Joi.string().required().label("TV Name"),
-    video: Joi.string().uri().required().label("Video"),
+    video: Joi.object({
+      path: Joi.string().uri().label("Video Path"),
+      id: Joi.string().allow(null).label("Video Id"),
+    }).required(),
+    // video: Joi.string().uri().required().label("Video"),
     links: Joi.array()
       .items({
         title: Joi.string().required().label("Link Title"),
@@ -91,12 +103,12 @@ const createWebpageSchema = Joi.object({
       hide: Joi.boolean().label("Hide"),
     }),
   }),
-})
+});
 
 function validateCreateWebpage(data) {
-  return validate(data, createWebpageSchema)
+  return validate(data, createWebpageSchema);
 }
 
 module.exports = {
   validateCreateWebpage,
-}
+};
