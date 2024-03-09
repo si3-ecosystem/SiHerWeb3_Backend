@@ -52,6 +52,17 @@ router.get("/", auth, async (req, res) => {
   return res.send({ webpage: webpageJson })
 })
 
+router.get("/:subdomain", async (req, res) => {
+  const { subdomain } = req.params
+  const webpage = await Webpage.findOne({ subdomain })
+  if (!webpage) return res.status(404).send("Webpage not found")
+
+  const { cid } = webpage
+  const webpageJson = await getFromFileStorage(cid)
+
+  return res.send({ webpage: webpageJson })
+})
+
 router.put("/", auth, async (req, res) => {
   const { user, body } = req
 
