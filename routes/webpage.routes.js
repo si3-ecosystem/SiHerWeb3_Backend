@@ -33,6 +33,7 @@ router.post("/", auth, async (req, res) => {
   const webpage = new Webpage({
     user: user._id,
     cid,
+    subdomain: uuidv4(),
   })
   await webpage.save()
 
