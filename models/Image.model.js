@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
-const Webpage = mongoose.model(
-  "Webpage",
+const Image = mongoose.model(
+  "Image",
   new mongoose.Schema({
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -9,8 +9,7 @@ const Webpage = mongoose.model(
       required: true,
     },
     cid: { type: String, required: true },
-    subdomain: { type: String, required: true },
   })
 )
 
-module.exports = Webpage
+module.exports = Image

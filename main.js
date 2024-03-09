@@ -4,7 +4,9 @@ const cors = require("cors");
 require("dotenv").config();
 
 const authRoutes = require("./routes/auth.routes");
+const imageRoutes = require("./routes/image.routes");
 const webpageRoutes = require("./routes/webpage.routes");
+const videoRoutes = require("./routes/video.routes");
 
 const app = express();
 app.use(express.json());
@@ -19,7 +21,9 @@ mongoose
   .then(() => console.log("MongoDB connected"));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/image", imageRoutes);
 app.use("/api/webpage", webpageRoutes);
+app.use("/api/video", videoRoutes);
 
 app.get("/", (_, res) => {
   return res.send("App");
