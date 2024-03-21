@@ -1,26 +1,24 @@
-const { PINATA_URL, PINATA_GATEWAY } = require("../consts")
-const PINATA_AUTH_TOKEN = process.env.PINATA_AUTH_TOKEN
+const { FleekSdk, PersonalAccessTokenService } = require("@fleekxyz/sdk")
+
+const FLEEK_PAT = process.env.FLEEK_PAT
+const FLEEK_PROJECT_ID = process.env.FLEEK_PROJECT_ID
+const FLEEK_GATEWAY = process.env.FLEEK_GATEWAY
+
+const newAccessTokenService = new PersonalAccessTokenService({
+  personalAccessToken: FLEEK_PAT,
+  projectId: FLEEK_PROJECT_ID,
+})
+
+const fleekSdk = new FleekSdk({ accessTokenService: newAccessTokenService })
 
 const uploadToFileStorage = async (file) => {
-  const formData = new FormData()
-  formData.append("file", file)
-
-  const response = await fetch(PINATA_URL, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${PINATA_AUTH_TOKEN}`,
-    },
-    body: formData,
-  })
-
-  const responseJson = await response.json()
-  return responseJson.IpfsHash
-}
-
-const getFromFileStorage = async (cid) => {
-  const res = await fetch(`${PINATA_GATEWAY}/${cid}`)
-  const json = await res.json()
-  return json
+  try {
+    const response = await fleekSdk.ipfs().add({path: file.name,content:file})
+    return response.cid
+  } catch (ex) {
+    console.log(ex)
+    return null
+  }
 }
 
 const deleteFromFileStorage = async (cid) => {
@@ -35,6 +33,5 @@ const deleteFromFileStorage = async (cid) => {
 
 module.exports = {
   uploadToFileStorage,
-  getFromFileStorage,
   deleteFromFileStorage,
 }

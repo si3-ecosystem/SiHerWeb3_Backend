@@ -6,10 +6,11 @@ const {
   uploadToFileStorage,
   deleteFromFileStorage,
 } = require("../utils/fileStorage.utils")
-const { PINATA_GATEWAY } = require("../consts")
 const auth = require("../middlewares/auth.middleware")
 
 const router = express.Router()
+
+const FLEEK_GATEWAY = process.env.FLEEK_GATEWAY
 
 router.post("/", auth, fileUpload(), async (req, res) => {
   const { files, user } = req
@@ -21,7 +22,7 @@ router.post("/", auth, fileUpload(), async (req, res) => {
   const video = new Video({ user: user._id, cid: videoCid })
   await video.save()
 
-  const videoUrl = `${PINATA_GATEWAY}/${videoCid}`
+  const videoUrl = `${FLEEK_GATEWAY}/${videoCid}`
   return res.send({ video: { ...video.toJSON(), videoUrl } })
 })
 
@@ -34,7 +35,7 @@ router.get("/", auth, async (req, res) => {
     .limit(pageSize)
   const videos = videosDocs.map((video) => ({
     ...video.toJSON(),
-    videoUrl: `${PINATA_GATEWAY}/${video.cid}`,
+    videoUrl: `${FLEEK_GATEWAY}/${video.cid}`,
   }))
   return res.send({ videos })
 })
@@ -45,7 +46,7 @@ router.get("/:id", auth, async (req, res) => {
   const video = await Video.findById(id)
   if (!video) return res.status(404).send("Video not found")
 
-  const videoUrl = `${PINATA_GATEWAY}/${video.cid}`
+  const videoUrl = `${FLEEK_GATEWAY}/${video.cid}`
   return res.send({ video: { ...video.toJSON(), videoUrl } })
 })
 
