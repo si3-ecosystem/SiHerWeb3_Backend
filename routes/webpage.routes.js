@@ -45,7 +45,7 @@ router.post("/", auth, async (req, res) => {
   });
   await webpage.save();
 
-  return res.send({ ...webpage , url: `${FLEEK_GATEWAY}/${webpage.cid}`});
+  return res.send({ ...webpage.toJSON() , url: `${FLEEK_GATEWAY}/${webpage.cid}`});
 });
 
 router.get("/", auth, async (req, res) => {
