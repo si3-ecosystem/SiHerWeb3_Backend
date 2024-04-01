@@ -9,6 +9,7 @@ const Webpage = mongoose.model(
       required: true,
     },
     cid: { type: String, required: true },
+    subdomain: String,
   })
 )
 
