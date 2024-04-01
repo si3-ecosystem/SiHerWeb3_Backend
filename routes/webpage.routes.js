@@ -19,8 +19,7 @@ const FLEEK_GATEWAY = process.env.FLEEK_GATEWAY
 
 router.post("/", auth, async (req, res) => {
   const { body, user } = req;
-  console.log(body);
-  console.log(user);
+
   const error = validateCreateWebpage(body);
   if (error) return res.status(400).send(error);
 

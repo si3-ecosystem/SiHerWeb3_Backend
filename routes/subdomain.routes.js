@@ -14,10 +14,10 @@ router.post("/", auth, async (req, res) => {
   const error = validateRegisterSubdomainSchema(body)
   if (error) return res.send(error)
 
-  const subdomainRegistered = await Webpage.countDocuments({
+  const subdomainRegistered = await Webpage.findOne({
     subdomain: body.subdomain,
   })
-  if (subdomainRegistered)
+  if (subdomainRegistered?.subdomain === body.subdomain)
     return res.status(400).send("Subdomain Already registered")
 
   let webpage = await Webpage.findOne({ user: user._id })

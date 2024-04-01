@@ -18,7 +18,7 @@ async function registerSubdomain(subdomain, contenthash) {
       Authorization: NAMESTONE_API_KEY,
     },
   })
-  console.log(await response.text())
+
   if (response.status === 200) {
     return true
   }
