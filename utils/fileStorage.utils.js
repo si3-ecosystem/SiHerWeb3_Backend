@@ -26,7 +26,7 @@ const deleteFromFileStorage = async (cid) => {
     method: "DELETE",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${PINATA_AUTH_TOKEN}`,
+      Authorization: `Bearer ${process.env.PINATA_AUTH_TOKEN}`,
     },
   })
 }

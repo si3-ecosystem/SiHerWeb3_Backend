@@ -10,7 +10,7 @@ const router = express.Router()
 
 router.post("/", auth, async (req, res) => {
   const { body, user } = req
-
+console.log(body);
   const error = validateRegisterSubdomainSchema(body)
   if (error) return res.send(error)
 
@@ -36,7 +36,7 @@ router.post("/", auth, async (req, res) => {
     { new: true }
   )
 
-  return res.send({ webpage })
+  return res.status(200).send({ webpage })
 })
 
 module.exports = router

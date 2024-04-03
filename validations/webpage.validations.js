@@ -28,9 +28,9 @@ const createWebpageSchema = Joi.object({
       .required()
       .min(1)
       .label("Categories"),
-       userimg : Joi.object({
-        path: Joi.string().required().label('User image'),
-        id: Joi.alternatives().try(Joi.string(), Joi.allow(null)).label('User image id'),
+      userimg: Joi.object({
+        path: Joi.string().required().label('User image path'),
+        id: Joi.alternatives(Joi.string().allow(null)).label('User image id')
       }),
     // userimg: Joi.string().uri().required().label("User Image"),
     name: Joi.string().required().label("Name"),
@@ -40,10 +40,10 @@ const createWebpageSchema = Joi.object({
     title: Joi.string().required().label("Value Title"),
     description: Joi.string().required().label("Value Description"),
     TVName: Joi.string().required().label("TV Name"),
-    video : Joi.object({
-      path: Joi.string().required().label('video'),
-      id: Joi.alternatives().try(Joi.string(), Joi.allow(null)).label('video id'),
-    }),
+    video: Joi.object({
+      path: Joi.string().required().label('Video path'),
+      id: Joi.alternatives(Joi.string().allow(null), Joi.allow(null)).label('Video id')
+    }).label('Video Object'),
     // video: Joi.string().uri().required().label("Video"),
     links: Joi.array()
       .items({

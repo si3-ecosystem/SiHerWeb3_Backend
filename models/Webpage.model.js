@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const Webpage = mongoose.model(
   "Webpage",
@@ -41,7 +41,10 @@ const Webpage = mongoose.model(
               required: true,
             },
           ],
-          userimg: { type: String, required: true },
+          userimg: {
+            path: { type: String, required: true },
+            id: { type: String },
+          },
           name: { type: String, required: true },
           pronoun: { type: String, required: true },
         },
@@ -49,7 +52,11 @@ const Webpage = mongoose.model(
           title: { type: String, required: true },
           description: { type: String, required: true },
           TVName: { type: String, required: true },
-          video: { type: String, required: true },
+          video: {
+            path: { type: String, required: true },
+            id: { type: String },
+          },
+          // video: { type: String, required: true },
           links: [
             {
               title: { type: String, required: true },
@@ -122,6 +129,6 @@ const Webpage = mongoose.model(
       required: true,
     },
   })
-)
+);
 
-module.exports = Webpage
+module.exports = Webpage;

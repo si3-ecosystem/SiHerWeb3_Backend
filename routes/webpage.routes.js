@@ -19,7 +19,6 @@ const FLEEK_GATEWAY = process.env.FLEEK_GATEWAY
 
 router.post("/", auth, async (req, res) => {
   const { body, user } = req;
-
   const error = validateCreateWebpage(body);
   if (error) return res.status(400).send(error);
 
@@ -35,9 +34,9 @@ router.post("/", auth, async (req, res) => {
   const file = new File([fileBlob], `${uuidv4()}.html`, {
     type: "text/html",
   });
-
+console.log(file);
   const cid = await uploadToFileStorage(file);
-
+console.log(cid);
   const webpage = new Webpage({
     user: user._id,
     cid,
@@ -52,7 +51,11 @@ router.get("/", auth, async (req, res) => {
   const { user } = req
 
   const webpage = await Webpage.findOne({ user: user._id })
-  return res.send({ url: `${FLEEK_GATEWAY}/${webpage.cid}`, ...webpage.toJSON() })
+  console.log(webpage);
+  if(!webpage){
+    return res.status(404).json({message:"Webpage not found"})
+  }
+  return res.send({ url: `${FLEEK_GATEWAY}/${webpage?.cid}`, ...webpage?.toJSON() })
 })
 
 router.put("/", auth, async (req, res) => {
