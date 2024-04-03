@@ -12,6 +12,7 @@ const {
   getFromFileStorage,
   deleteFromFileStorage,
 } = require("../utils/fileStorage.utils");
+const { registerSubdomain } = require("../utils/namestone.util");
 
 const router = express.Router();
 
@@ -82,6 +83,10 @@ router.put("/", auth, async (req, res) => {
     cid: newCid,
   });
   await webpage.save();
+
+  if(webpage.subdomain){
+    await registerSubdomain(webpage.subdomain)
+  }
 
   return res.send({ webpage });
 });
