@@ -41,6 +41,7 @@ router.post("/", auth, async (req, res) => {
   const webpage = new Webpage({
     user: user._id,
     cid,
+    data: body,
   });
   await webpage.save();
 
@@ -51,7 +52,7 @@ router.get("/", auth, async (req, res) => {
   const { user } = req
 
   const webpage = await Webpage.findOne({ user: user._id })
-  return res.send({ url: `${FLEEK_GATEWAY}/${webpage.cid}` })
+  return res.send({ url: `${FLEEK_GATEWAY}/${webpage.cid}`, ...webpage.toJSON() })
 })
 
 router.put("/", auth, async (req, res) => {
