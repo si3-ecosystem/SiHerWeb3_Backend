@@ -6,6 +6,9 @@ const {
 const Webpage = require("../models/Webpage.model")
 const { registerSubdomain } = require("../utils/namestone.util")
 
+const DOMAIN_BLACK_LIST = process.env.DOMAIN_BLACK_LIST
+const blackListedDomains = DOMAIN_BLACK_LIST.split(',')
+
 const router = express.Router()
 
 router.post("/", auth, async (req, res) => {
@@ -13,6 +16,9 @@ router.post("/", auth, async (req, res) => {
 console.log(body);
   const error = validateRegisterSubdomainSchema(body)
   if (error) return res.send(error)
+
+  const domain = blackListedDomains.find(domain => domain === body.subdomain)
+  if(domain) return res.status(400).send("Subdomain is blacklisted")
 
   const subdomainRegistered = await Webpage.findOne({
     subdomain: body.subdomain,
