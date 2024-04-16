@@ -42,9 +42,9 @@
             format("woff");
       }
       body {
-        font-family: Clash Display, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-          sans-serif;
+        font-family: Clash Display, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+          "Helvetica Neue", sans-serif;
       }
 
       .hero-tag {
@@ -1001,10 +1001,16 @@
             <div style="border-bottom: 1px solid #0000001a; padding: 20px">
               <% for (let index = 0; index < value.links.length; index++) { %>
               <div style="display: grid; grid-template-columns: repeat(3, 1fr)">
-                <span>Superpower</span>
-                <span style="grid-column: span 2 / span 2">
-                  <%= value.links[index].title %>
-                </span>
+                <span><%= value.links[index].main %></span>
+                <a
+                  href="<%= value.links[index].url %>"
+                  target="_blank"
+                  style="text-decoration: inherit; color: inherit"
+                >
+                  <span style="grid-column: span 2 / span 2">
+                    <%= value.links[index].title %>
+                  </span>
+                </a>
               </div>
               <% } %>
             </div>
@@ -1388,7 +1394,8 @@
           justify-content: center;
         "
       >
-      <% for (let index = 0; index < available.socialChannels.length; index++) { %>
+        <% for (let index = 0; index < available.socialChannels.length; index++)
+        { %>
         <div
           style="
             padding: 12px 20px;
@@ -1400,7 +1407,7 @@
           <span><%= available.socialChannels[index].text %>:</span>
           <span> <%= available.socialChannels[index].url %> </span>
         </div>
-      <% } %>
+        <% } %>
       </div>
     </div>
     <!-- available end -->
