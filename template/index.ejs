@@ -1010,20 +1010,23 @@
             </div>
 
             <div style="margin-top: 20px">
-              <button
-                style="
-                  border: none;
-                  border-radius: 10px;
-                  color: white;
-                  width: 100%;
-                  padding: 12px;
-                  font-size: 18px;
-                  font-weight: 500;
-                  background: linear-gradient(#c8bafd, #3e21f3);
-                "
-              >
-                <%= value.buttonText %>
-              </button>
+              <a href="<%= value.buttonLink %>" target="_blank">
+                <button
+                  style="
+                    border: none;
+                    border-radius: 10px;
+                    color: white;
+                    cursor: pointer;
+                    width: 100%;
+                    padding: 12px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    background: linear-gradient(#c8bafd, #3e21f3);
+                  "
+                >
+                  <%= value.buttonText %>
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -1385,6 +1388,7 @@
           justify-content: center;
         "
       >
+      <% for (let index = 0; index < available.socialChannels.length; index++) { %>
         <div
           style="
             padding: 12px 20px;
@@ -1393,42 +1397,10 @@
             background-color: #ffffff1a;
           "
         >
-          <span>Linkedin:</span>
-          <span> <%= available.linkedin.url %> </span>
+          <span><%= available.socialChannels[index].text %>:</span>
+          <span> <%= available.socialChannels[index].url %> </span>
         </div>
-        <div
-          style="
-            padding: 12px 20px;
-            border: 1px solid #363636;
-            border-radius: 6px;
-            background-color: #ffffff1a;
-          "
-        >
-          <span>Instagarm:</span>
-          <span><%= available.instagram.url %> </span>
-        </div>
-        <div
-          style="
-            padding: 12px 20px;
-            border: 1px solid #363636;
-            border-radius: 6px;
-            background-color: #ffffff1a;
-          "
-        >
-          <span>Twitter/X:</span>
-          <span><%= available.twitter.url %> </span>
-        </div>
-        <div
-          style="
-            padding: 12px 20px;
-            border: 1px solid #363636;
-            border-radius: 6px;
-            background-color: #ffffff1a;
-          "
-        >
-          <span>Mail:</span>
-          <span><%= available.email.address %> </span>
-        </div>
+      <% } %>
       </div>
     </div>
     <!-- available end -->

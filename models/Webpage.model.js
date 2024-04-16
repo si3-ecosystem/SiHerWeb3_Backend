@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const Webpage = mongoose.model(
   "Webpage",
@@ -64,6 +64,7 @@ const Webpage = mongoose.model(
             },
           ],
           buttonText: { type: String, required: true },
+          buttonLink: { type: String, required: true },
         },
         vision: {
           title: { type: String, required: true },
@@ -108,27 +109,17 @@ const Webpage = mongoose.model(
               _id: false,
             },
           ],
-          linkedin: {
-            url: { type: String, required: true },
-            hide: { type: Boolean, required: true },
-          },
-          instagram: {
-            url: { type: String, required: true },
-            hide: { type: Boolean, required: true },
-          },
-          twitter: {
-            url: { type: String, required: true },
-            hide: { type: Boolean, required: true },
-          },
-          email: {
-            address: { type: String, required: true },
-            hide: { type: Boolean, required: true },
-          },
+          socialChannels: [
+            {
+              text: { type: String, required: true },
+              url: { type: String, required: true },
+            },
+          ],
         },
       },
       required: true,
     },
   })
-);
+)
 
-module.exports = Webpage;
+module.exports = Webpage

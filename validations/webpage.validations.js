@@ -28,10 +28,10 @@ const createWebpageSchema = Joi.object({
       .required()
       .min(1)
       .label("Categories"),
-      userimg: Joi.object({
-        path: Joi.string().required().label('User image path'),
-        id: Joi.alternatives(Joi.string().allow(null)).label('User image id')
-      }),
+    userimg: Joi.object({
+      path: Joi.string().required().label("User image path"),
+      id: Joi.alternatives(Joi.string().allow(null)).label("User image id"),
+    }),
     // userimg: Joi.string().uri().required().label("User Image"),
     name: Joi.string().required().label("Name"),
     pronoun: Joi.string().required().label("Pronoun"),
@@ -41,9 +41,11 @@ const createWebpageSchema = Joi.object({
     description: Joi.string().required().label("Value Description"),
     TVName: Joi.string().required().label("TV Name"),
     video: Joi.object({
-      path: Joi.string().required().label('Video path'),
-      id: Joi.alternatives(Joi.string().allow(null), Joi.allow(null)).label('Video id')
-    }).label('Video Object'),
+      path: Joi.string().required().label("Video path"),
+      id: Joi.alternatives(Joi.string().allow(null), Joi.allow(null)).label(
+        "Video id"
+      ),
+    }).label("Video Object"),
     // video: Joi.string().uri().required().label("Video"),
     links: Joi.array()
       .items({
@@ -52,6 +54,7 @@ const createWebpageSchema = Joi.object({
       .required()
       .min(1),
     buttonText: Joi.string().required().label("Button Text"),
+    buttonLink: Joi.string().uri().required().label("Button Link"),
   }),
   vision: Joi.object({
     title: Joi.string().required().label("Vision Title"),
@@ -89,22 +92,15 @@ const createWebpageSchema = Joi.object({
         heading: Joi.string().required().label("Heading"),
       })
     ),
-    linkedin: Joi.object({
-      url: Joi.string().label("Linkedin Url"),
-      hide: Joi.boolean().label("Hide"),
-    }),
-    instagram: Joi.object({
-      url: Joi.string().label("Instagram Url"),
-      hide: Joi.boolean().label("Hide"),
-    }),
-    twitter: Joi.object({
-      url: Joi.string().label("Twitter Url"),
-      hide: Joi.boolean().label("Hide"),
-    }),
-    email: Joi.object({
-      address: Joi.string().email().label("Email Address"),
-      hide: Joi.boolean().label("Hide"),
-    }),
+    socialChannels: Joi.array()
+      .items(
+        Joi.object({
+          text: Joi.string().required().label("Text"),
+          url: Joi.string().required().label("Url"),
+        })
+      )
+      .required()
+      .label("Social Channels"),
   }),
 })
 
