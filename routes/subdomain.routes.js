@@ -7,7 +7,7 @@ const Webpage = require("../models/Webpage.model")
 const { registerSubdomain } = require("../utils/namestone.util")
 
 const DOMAIN_BLACK_LIST = process.env.DOMAIN_BLACK_LIST
-const blackListedDomains = DOMAIN_BLACK_LIST.split(',')
+const blackListedDomains = DOMAIN_BLACK_LIST?.split(',')
 
 const router = express.Router()
 
