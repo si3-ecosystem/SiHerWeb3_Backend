@@ -949,10 +949,15 @@
         >
           <div style="flex: 1">
             <div style="width: 100%; border-radius: 16px; overflow: hidden">
-              <video style="height: 100%; width: 100%; border-radius: 0.5rem">
-                <source src="<%= value.video.path %>" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <iframe
+                src="<%= value.video.path %>"
+                frameborder="0"
+                allowfullscreen
+                allow="autoplay; encrypted-media; picture-in-picture;cover"
+                sandbox="allow-same-origin allow-scripts"
+                width="500"
+                height="300"
+              ></iframe>
             </div>
           </div>
           <div style="flex: 1; display: flex; flex-direction: column">
@@ -997,9 +1002,9 @@
             <div style="border-bottom: 1px solid #0000001a; padding: 20px">
               <% for (let index = 0; index < value.links.length; index++) { %>
               <div style="display: grid; grid-template-columns: repeat(3, 1fr)">
-                <span><%= value.links[index].main %></span>
+                <span><%= value.links[index].type %></span>
                 <a
-                  href="<%= value.links[index].url %>"
+                  href="<%= value.links[index].link %>"
                   target="_blank"
                   style="text-decoration: inherit; color: inherit"
                 >

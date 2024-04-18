@@ -50,8 +50,8 @@ const createWebpageSchema = Joi.object({
     links: Joi.array()
       .items({
         title: Joi.string().required().label("Link Title"),
-        main: Joi.string().required().label("Heading"),
-        url: Joi.string().uri().required().label("Url"),
+        type: Joi.string().required().label("Type"),
+        link: Joi.string().uri().required().label("Link"),
       })
       .required()
       .min(1),

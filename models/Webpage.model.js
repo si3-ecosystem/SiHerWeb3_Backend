@@ -60,8 +60,8 @@ const Webpage = mongoose.model(
           links: [
             {
               title: { type: String, required: true },
-              main: { type: String, required: true },
-              url: { type: String, required: true },
+              type: { type: String, required: true },
+              link: { type: String, required: true },
               _id: false,
             },
           ],
