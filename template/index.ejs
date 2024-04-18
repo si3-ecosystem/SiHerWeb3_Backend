@@ -367,10 +367,13 @@
             "
           ></div>
           <div style="display: flex; gap: 8px">
-            <% for (let index = 0; index < landing.categories.length; index++) {
+            <div class="hero-tag"><%= landing.categories.region %></div>
+            <% for (let index = 0; index < landing.categories.superPower.length; index++) {
             %>
-            <div class="hero-tag"><%= landing.categories[index].title %></div>
+            <div class="hero-tag"><%= landing.categories.superPower[index] %></div>
             <% } %>
+            <div class="hero-tag"><%= landing.categories.organizationAffiliations %></div>
+            <div class="hero-tag"><%= landing.categories.communityAffiliations %></div>
           </div>
         </div>
         <div style="flex: 1; background-color: #efefefb2; border-radius: 6px">

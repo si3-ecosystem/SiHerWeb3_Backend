@@ -32,15 +32,19 @@ const Webpage = mongoose.model(
               required: true,
             },
           ],
-          categories: [
-            {
-              type: {
-                title: { type: String, required: true },
-                _id: false,
-              },
-              required: true,
+          categories: {
+            type: {
+              region: { type: String, required: true },
+              superPower: [
+                {
+                  type: String,
+                },
+              ],
+              organizationAffiliations: { type: String },
+              communityAffiliations: { type: String },
             },
-          ],
+            required: true,
+          },
           userimg: {
             path: { type: String, required: true },
             id: { type: String },
@@ -56,7 +60,6 @@ const Webpage = mongoose.model(
             path: { type: String, required: true },
             id: { type: String },
           },
-          // video: { type: String, required: true },
           links: [
             {
               title: { type: String, required: true },

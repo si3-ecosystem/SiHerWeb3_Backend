@@ -19,14 +19,13 @@ const createWebpageSchema = Joi.object({
       .required()
       .min(1)
       .label("Hastags"),
-    categories: Joi.array()
-      .items(
-        Joi.object({
-          title: Joi.string().required().label("Category Title"),
-        }).required()
-      )
+    categories: Joi.object({
+      region: Joi.string().required().label("Region"),
+      superPower: Joi.array().items(Joi.string().required()),
+      organizationAffiliations: Joi.string().label("Organization Affiliations"),
+      communityAffiliations: Joi.string().label("Community Affiliations"),
+    })
       .required()
-      .min(1)
       .label("Categories"),
     userimg: Joi.object({
       path: Joi.string().required().label("User image path"),
