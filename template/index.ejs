@@ -68,10 +68,43 @@
           max-width: none !important;
         }
         .mobile-hidden {
-          display: none;
+          display: none !important;
         }
         .mobile-shown {
           display: block;
+        }
+        .mobile-x-margin-48{
+          margin: 0 3rem;
+        }
+        .mobile-x-padding-0{
+          padding: 0 !important;
+        }
+        .mobile-font-48{
+          font-size: 3rem !important;
+        }
+        .mobile-font-38{
+          font-size: 2.375rem !important;
+        }
+        .mobile-font-32{
+          font-size: 2rem !important;
+        }
+        .mobile-font-28{
+          font-size: 1.75rem !important;
+        }
+        .mobile-font-24{
+          font-size: 1.5rem !important;
+        }
+        .mobile-font-20 {
+          font-size: 1.25rem !important;
+        }
+        .mobile-font-16 {
+          font-size: 1rem !important;
+        }
+        .mobile-font-10 {
+          font-size: 0.625rem !important;
+        }
+        .mobile-gap-72 {
+          gap: 4.5rem !important;
         }
       }
     </style>
@@ -100,6 +133,7 @@
           <%= navbar.websiteName%>
         </div>
         <div
+          class="mobile-hidden"
           style="
             display: flex;
             align-items: center;
@@ -114,6 +148,10 @@
           <div>Value</div>
           <div id="google_translate_element"></div>
         </div>
+        <svg class="mobile-shown" width="33" height="24" viewBox="0 0 33 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M32.5272 12.0082C32.5272 11.6008 32.3654 11.2101 32.0773 10.9221C31.7893 10.634 31.3986 10.4722 30.9912 10.4722H2.3192C1.91183 10.4722 1.52114 10.634 1.23309 10.9221C0.945031 11.2101 0.783203 11.6008 0.783203 12.0082C0.783203 12.4156 0.945031 12.8062 1.23309 13.0943C1.52114 13.3823 1.91183 13.5442 2.3192 13.5442H30.9912C31.3986 13.5442 31.7893 13.3823 32.0773 13.0943C32.3654 12.8062 32.5272 12.4156 32.5272 12.0082ZM32.5272 1.76818C32.5272 1.36081 32.3654 0.970117 32.0773 0.682062C31.7893 0.394006 31.3986 0.232178 30.9912 0.232178H2.3192C1.91183 0.232178 1.52114 0.394006 1.23309 0.682062C0.945031 0.970117 0.783203 1.36081 0.783203 1.76818C0.783203 2.17555 0.945031 2.56624 1.23309 2.85429C1.52114 3.14235 1.91183 3.30418 2.3192 3.30418H30.9912C31.3986 3.30418 31.7893 3.14235 32.0773 2.85429C32.3654 2.56624 32.5272 2.17555 32.5272 1.76818ZM32.5272 22.2482C32.5272 21.8408 32.3654 21.4501 32.0773 21.1621C31.7893 20.874 31.3986 20.7122 30.9912 20.7122H2.3192C1.91183 20.7122 1.52114 20.874 1.23309 21.1621C0.945031 21.4501 0.783203 21.8408 0.783203 22.2482C0.783203 22.6556 0.945031 23.0462 1.23309 23.3343C1.52114 23.6224 1.91183 23.7842 2.3192 23.7842H30.9912C31.3986 23.7842 31.7893 23.6224 32.0773 23.3343C32.3654 23.0462 32.5272 22.6556 32.5272 22.2482Z" fill="black"/>
+        </svg>
+          
       </div>
     </nav>
     <!-- nav end -->
@@ -354,7 +392,7 @@
           </defs>
         </svg>
         <div style="flex: 1">
-          <div style="font-size: 56px">
+          <div class="mobile-font-48" style="font-size: 56px">
             <div><%= landing.title %></div>
             <div><%= landing.subTitle %></div>
           </div>
@@ -366,7 +404,7 @@
               margin: 30px 0;
             "
           ></div>
-          <div style="display: flex; gap: 8px">
+          <div class="mobile-font-28" style="font-size: 14px; display: flex; gap: 8px">
             <div class="hero-tag"><%= landing.categories.region %></div>
             <% for (let index = 0; index < landing.categories.superPower.length; index++) {
             %>
@@ -376,7 +414,7 @@
             <div class="hero-tag"><%= landing.categories.communityAffiliations %></div>
           </div>
         </div>
-        <div style="flex: 1; background-color: #efefefb2; border-radius: 6px">
+        <div class="mobile-x-margin-48" style="flex: 1; background-color: #efefefb2; border-radius: 6px">
           <div style="padding: 45px">
             <img
               alt=""
@@ -386,6 +424,7 @@
           </div>
           <div style="padding: 40px 20px; border-top: 1px solid #0000001a">
             <div
+
               style="
                 font-size: 35px;
                 font-weight: 500;
@@ -434,10 +473,12 @@
     </div>
     <!-- landing end -->
 
+    <hr style="margin-top: 2rem;" class="mobile-shown"/>
+
     <!-- value start -->
     <div>
       <div
-        class="mobile-col"
+        class="mobile-col mobile-gap-72"
         style="
           display: flex;
           padding: 60px 64px 86px 64px;
@@ -447,11 +488,11 @@
         "
       >
         <div style="flex: 1">
-          <h2 style="margin-bottom: 20px; font-size: 28px; font-weight: 500">
+          <h2 class="mobile-font-48" style="margin-bottom: 20px; font-size: 28px; font-weight: 500">
             <%= value.title %>
           </h2>
           <p
-            class="mobile-no-max-w"
+            class="mobile-no-max-w mobile-font-32"
             style="
               max-width: 424px;
               color: #828282;
@@ -809,7 +850,7 @@
             "
           >
             <h2
-              style="
+                style="
                 margin-bottom: 20px;
                 font-size: 28px;
                 font-weight: 500;
@@ -828,7 +869,7 @@
     <!-- value end -->
 
     <!-- siher tv -->
-    <div style="padding: 40px 64px">
+    <div class="mobile-x-padding-0" style="padding: 40px 64px">
       <div
         style="
           max-width: 1440px;
@@ -838,8 +879,8 @@
           border-radius: 8px;
         "
       >
-        <div style="display: flex; justify-content: space-between">
-          <h2 style="font-size: 24; font-weight: 500"><%= value.TVName %></h2>
+        <div style="display: flex; justify-content: space-between; gap: 20px;">
+          <h2 class="mobile-font-28" style="font-size: 24; flex-shrink: 0; font-weight: 500"><%= value.TVName %></h2>
           <svg
             width="704"
             height="39"
@@ -958,8 +999,8 @@
                 allowfullscreen
                 allow="autoplay; encrypted-media; picture-in-picture;cover"
                 sandbox="allow-same-origin allow-scripts"
-                width="500"
-                height="300"
+                width="100%"
+                style="aspect-ratio: 16/9;"
               ></iframe>
             </div>
           </div>
@@ -1022,6 +1063,7 @@
             <div style="margin-top: 20px">
               <a href="<%= value.buttonLink %>" target="_blank">
                 <button
+                  class="mobile-font-38"
                   style="
                     border: none;
                     border-radius: 10px;
@@ -1045,9 +1087,10 @@
     <!-- siher tv end -->
 
     <!-- cv start -->
-    <div class="mobile-hidden" style="background-color: #f5f5f5">
+    <div style="background-color: #f5f5f5">
       <!-- header start -->
       <div
+        class="mobile-font-20"
         style="
           max-width: 1440px;
           margin: auto;
@@ -1061,6 +1104,7 @@
           style="grid-column: span 2 / span 2; border-left: 1px solid #d7d7d7"
         >
           <div
+            class="mobile-font-20"
             style="
               padding: 40px 120px;
               padding-left: 20px;
@@ -1076,6 +1120,7 @@
         </div>
         <div>
           <div
+            class="mobile-font-20"
             style="
               padding: 40px 10px;
               font-size: 28px;
@@ -1088,13 +1133,14 @@
           </div>
         </div>
         <div
-          style="
-            grid-column: span 2 / span 2;
-            border-left: 1px solid #d7d7d7;
-            border-right: 1px solid #d7d7d7;
-          "
+        style="
+        grid-column: span 2 / span 2;
+        border-left: 1px solid #d7d7d7;
+        border-right: 1px solid #d7d7d7;
+        "
         >
-          <div
+        <div
+            class="mobile-font-20"
             style="
               padding: 40px 75px;
               font-size: 28px;
@@ -1121,6 +1167,7 @@
           style="grid-column: span 2 / span 2; border-left: 1px solid #d7d7d7"
         >
           <div
+            class="mobile-font-16"
             style="
               padding: 40px 120px;
               padding-left: 20px;
@@ -1152,6 +1199,7 @@
         </div>
         <div style="border-left: 1px solid #d7d7d7">
           <div
+            class="mobile-font-16"
             style="
               padding: 40px 0;
               font-size: 28px;
@@ -1162,6 +1210,7 @@
             <% for (let index = 0; index < CV.past.highlights.length; index++) {
             %>
             <div
+              class="mobile-font-16"
               style="
                 font-size: 24px;
                 font-weight: 500;
@@ -1182,6 +1231,7 @@
           "
         >
           <div
+            class="mobile-font-16"
             style="
               padding: 40px 75px;
               font-size: 16px;
@@ -1196,114 +1246,6 @@
       </div>
     </div>
 
-    <div class="mobile-shown" style="background-color: #f5f5f5">
-      <!-- header start -->
-      <div style="max-width: 1440px; margin: auto; padding: 0 110px">
-        <div>
-          <div
-            style="
-              padding: 40px 10px;
-              padding-left: 20px;
-              font-size: 28px;
-              font-weight: 500;
-              color: #4f4f4f;
-            "
-          >
-            <%= CV.present.title %>
-          </div>
-          <div
-            style="
-              padding: 40px 120px;
-              padding-left: 20px;
-              font-size: 24px;
-              font-weight: 500;
-              color: #4f4f4f;
-              border-left: 1px solid #d7d7d7;
-              height: 100%;
-            "
-          >
-            <% for (let index = 0; index < CV.present.highlights.length;
-            index++) { %>
-            <div
-              style="
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                margin-bottom: 30px;
-                gap: 10px;
-              "
-            >
-              <span><%= CV.present.highlights[index].year %></span>
-              <span style="grid-column: span 2 / span 2">
-                <%= CV.present.highlights[index].text %>
-              </span>
-            </div>
-            <% } %>
-          </div>
-        </div>
-        <div>
-          <div
-            style="
-              padding: 40px 10px;
-              font-size: 28px;
-              font-weight: 500;
-              color: #4f4f4f;
-            "
-          >
-            <%= CV.past.title %>
-          </div>
-          <div style="border-left: 1px solid #d7d7d7">
-            <div
-              style="
-                padding: 40px 0;
-                font-size: 28px;
-                font-weight: 500;
-                color: #4f4f4f;
-              "
-            >
-              <% for (let index = 0; index < CV.past.highlights.length; index++)
-              { %>
-              <div
-                style="
-                  font-size: 24px;
-                  font-weight: 500;
-                  color: #181b1f;
-                  margin: 0 16px 64px 16px;
-                "
-              >
-                <%= CV.past.highlights[index] %>
-              </div>
-              <% } %>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            style="
-              padding: 40px 10px;
-              font-size: 28px;
-              font-weight: 500;
-              color: #4f4f4f;
-            "
-          >
-            <%= CV.future.title %>
-          </div>
-          <div style="border-left: 1px solid #d7d7d7">
-            <div
-              style="
-                padding: 42px 0;
-                font-size: 16px;
-                font-weight: 400;
-                color: #828282;
-                margin: 0 16px;
-              "
-            >
-              <%= CV.future.text %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- header end -->
-    </div>
     <!-- cv end -->
 
     <!-- available start -->
@@ -1316,13 +1258,13 @@
           style="
             margin-top: 30px;
             display: flex;
-
             flex-wrap: wrap;
             justify-content: space-around;
           "
         >
           <% for (let index = 0; index < available.marque.length; index++) { %>
           <div
+            class="mobile-font-28"
             style="
               display: flex;
               align-items: center;
@@ -1363,6 +1305,7 @@
           <% } %>
         </div>
         <div
+          class="mobile-font-24"
           style="
             max-width: 504px;
             margin: auto;
@@ -1388,7 +1331,7 @@
         </div>
       </div>
     </div>
-    <div style="padding: 14px; background-color: black; color: #e0e0e0">
+    <div class="mobile-font-10" style="padding: 14px; background-color: black; color: #e0e0e0">
       <div
         style="
           max-width: 1440px;
