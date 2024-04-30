@@ -17,7 +17,7 @@ console.log(body);
   const error = validateRegisterSubdomainSchema(body)
   if (error) return res.send(error)
 
-  const domain = blackListedDomains.find(domain => domain === body.subdomain)
+  const domain = blackListedDomains?.find(domain => domain === body.subdomain)
   if(domain) return res.status(400).send("Subdomain is blacklisted")
 
   const subdomainRegistered = await Webpage.findOne({
