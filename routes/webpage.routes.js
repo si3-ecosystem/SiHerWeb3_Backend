@@ -91,7 +91,7 @@ router.put("/", auth, async (req, res) => {
   await webpage.save()
 
   if(webpage.subdomain){
-    await registerSubdomain(webpage.subdomain)
+    await registerSubdomain(webpage.subdomain, newCid)
   }
 
   return res.send({ url: `${PINATA_GATEWAY}/${webpage?.cid}`, ...webpage?.toJSON() });
