@@ -22,7 +22,9 @@ const createWebpageSchema = Joi.object({
     categories: Joi.object({
       region: Joi.string().required().label("Region"),
       superPower: Joi.array().items(Joi.string().required()),
-      organizationAffiliations: Joi.string().label("Organization Affiliations"),
+      organizationAffiliations: Joi.array()
+        .items(Joi.string().required())
+        .label("Organization Affiliations"),
       communityAffiliations: Joi.string().label("Community Affiliations"),
     })
       .required()

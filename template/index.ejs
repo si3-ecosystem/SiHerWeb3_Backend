@@ -526,9 +526,12 @@
               <%= landing.categories.superPower[index] %>
             </div>
             <% } %>
+            <% for (let index = 0; index < landing.categories.organizationAffiliations.length;
+            index++) { %>
             <div class="hero-tag">
-              <%= landing.categories.organizationAffiliations %>
+              <%= landing.categories.organizationAffiliations[index] %>
             </div>
+            <% } %>
             <div class="hero-tag">
               <%= landing.categories.communityAffiliations %>
             </div>
