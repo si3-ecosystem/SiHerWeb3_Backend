@@ -13,7 +13,6 @@ const router = express.Router()
 
 router.post("/", auth, async (req, res) => {
   const { body, user } = req
-console.log(body);
   const error = validateRegisterSubdomainSchema(body)
   if (error) return res.send(error)
 

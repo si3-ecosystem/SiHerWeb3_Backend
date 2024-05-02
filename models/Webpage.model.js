@@ -40,7 +40,7 @@ const Webpage = mongoose.model(
                   type: String,
                 },
               ],
-              organizationAffiliations: { type: String },
+              organizationAffiliations: [{ type: String }],
               communityAffiliations: { type: String },
             },
             required: true,

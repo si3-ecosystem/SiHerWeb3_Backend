@@ -9,14 +9,12 @@ const { validateCreateWebpage } = require("../validations/webpage.validations");
 const Webpage = require("../models/Webpage.model");
 const {
   uploadToFileStorage,
-  getFromFileStorage,
   deleteFromFileStorage,
 } = require("../utils/fileStorage.utils");
 const { registerSubdomain } = require("../utils/namestone.util");
+const { PINATA_GATEWAY } = require("../consts");
 
 const router = express.Router();
-
-const FLEEK_GATEWAY = process.env.FLEEK_GATEWAY
 
 router.post("/", auth, async (req, res) => {
   const { body, user } = req;
@@ -45,20 +43,18 @@ router.post("/", auth, async (req, res) => {
   });
   await webpage.save();
 
-  return res.send({ ...webpage.toJSON() , url: `${FLEEK_GATEWAY}/${webpage.cid}`});
+  return res.send({ ...webpage.toJSON() , url: `${PINATA_GATEWAY}/${webpage.cid}`});
 });
 
 router.get("/", auth, async (req, res) => {
   const { user } = req
 
   const webpage = await Webpage.findOne({ user: user._id })
-  console.log(webpage);
-
   
   if(!webpage){
     return res.status(404).json({message:"Webpage not found"})
   }
-  return res.send({ url: `${FLEEK_GATEWAY}/${webpage?.cid}`, ...webpage?.toJSON() })
+  return res.send({ url: `${PINATA_GATEWAY}/${webpage?.cid}`, ...webpage?.toJSON() })
 })
 
 router.put("/", auth, async (req, res) => {
@@ -98,7 +94,7 @@ router.put("/", auth, async (req, res) => {
     await registerSubdomain(webpage.subdomain)
   }
 
-  return res.send({ url: `${FLEEK_GATEWAY}/${webpage?.cid}`, ...webpage?.toJSON() });
+  return res.send({ url: `${PINATA_GATEWAY}/${webpage?.cid}`, ...webpage?.toJSON() });
 });
 
 router.delete("/", auth, async (req, res) => {

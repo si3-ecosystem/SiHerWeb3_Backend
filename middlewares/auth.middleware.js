@@ -6,9 +6,7 @@ const auth = (req, res, next) => {
 
   if (authorizationParts.length === 2) {
     const authToken = authorizationParts[1];
-    console.log(authToken);
     const user = verifyAuthToken(authToken);
-    console.log(user);
     req.user = user;
     return next();
   }

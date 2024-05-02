@@ -7,10 +7,9 @@ const {
   deleteFromFileStorage,
 } = require("../utils/fileStorage.utils");
 const auth = require("../middlewares/auth.middleware");
+const { PINATA_GATEWAY } = require("../consts");
 
 const router = express.Router();
-
-const FLEEK_GATEWAY = process.env.FLEEK_GATEWAY
 
 router.post("/", auth, fileUpload(), async (req, res) => {
   const { files, user } = req;
@@ -24,7 +23,7 @@ router.post("/", auth, fileUpload(), async (req, res) => {
   const image = new Image({ user: user._id, cid: imageCid });
   await image.save();
 
-  const imageUrl = `${FLEEK_GATEWAY}/${imageCid}`;
+  const imageUrl = `${PINATA_GATEWAY}/${imageCid}`;
   return res.send({ image: { ...image.toJSON(), imageUrl } });
 });
 
@@ -37,7 +36,7 @@ router.get("/", auth, async (req, res) => {
     .limit(pageSize);
   const images = imagesDocs.map((image) => ({
     ...image.toJSON(),
-    imageUrl: `${FLEEK_GATEWAY}/${image.cid}`,
+    imageUrl: `${PINATA_GATEWAY}/${image.cid}`,
   }));
   return res.send({ images });
 });
@@ -48,7 +47,7 @@ router.get("/:id", auth, async (req, res) => {
   const image = await Image.findById(id);
   if (!image) return res.status(404).send("Image not found");
 
-  const imageUrl = `${FLEEK_GATEWAY}/${image.cid}`;
+  const imageUrl = `${PINATA_GATEWAY}/${image.cid}`;
   return res.send({ image: { ...image.toJSON(), imageUrl } });
 });
 
