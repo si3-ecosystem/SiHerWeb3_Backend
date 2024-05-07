@@ -1260,7 +1260,7 @@
               border-left: 1px solid #d7d7d7;
             "
           >
-            <%= CV.present.title %>
+            <%= CV.past.title %>
           </div>
         </div>
         <div>
@@ -1274,7 +1274,7 @@
               border-left: 1px solid #d7d7d7;
             "
           >
-            <%= CV.past.title %>
+            <%= CV.present.title %>
           </div>
         </div>
         <div
@@ -1326,7 +1326,7 @@
               height: 100%;
             "
           >
-            <% for (let index = 0; index < CV.present.highlights.length;
+            <% for (let index = 0; index < CV.past.highlights.length;
             index++) { %>
             <div
               style="
@@ -1336,9 +1336,9 @@
                 gap: 10px;
               "
             >
-              <span><%= CV.present.highlights[index].year %></span>
+              <span><%= CV.past.highlights[index].year %></span>
               <span style="grid-column: span 2 / span 2">
-                <%= CV.present.highlights[index].text %>
+                <%= CV.past.highlights[index].text %>
               </span>
             </div>
             <% } %>
@@ -1354,7 +1354,7 @@
               color: #4f4f4f;
             "
           >
-            <% for (let index = 0; index < CV.past.highlights.length; index++) {
+            <% for (let index = 0; index < CV.present.highlights.length; index++) {
             %>
             <div
               class="mobile-font-16 mobile-sm-font-8"
@@ -1365,7 +1365,7 @@
                 margin: 0 16px 64px 16px;
               "
             >
-              <%= CV.past.highlights[index] %>
+              <%= CV.present.highlights[index] %>
             </div>
             <% } %>
           </div>

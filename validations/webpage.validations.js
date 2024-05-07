@@ -67,7 +67,7 @@ const createWebpageSchema = Joi.object({
     description: Joi.string().required().label("Vision Description"),
   }),
   CV: Joi.object({
-    present: Joi.object({
+    past: Joi.object({
       title: Joi.string().required().label("CV Title"),
       highlights: Joi.array().items(
         Joi.object({
@@ -78,7 +78,7 @@ const createWebpageSchema = Joi.object({
     })
       .required()
       .label("Present"),
-    past: Joi.object({
+    present: Joi.object({
       title: Joi.string().required().label("Past Title"),
       highlights: Joi.array().items(Joi.string().required()),
     })

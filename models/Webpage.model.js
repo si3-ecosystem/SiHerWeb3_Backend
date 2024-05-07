@@ -83,7 +83,7 @@ const Webpage = mongoose.model(
           description: { type: String, required: true },
         },
         CV: {
-          present: {
+          past: {
             title: { type: String, required: true },
             highlights: [
               {
@@ -96,7 +96,7 @@ const Webpage = mongoose.model(
               },
             ],
           },
-          past: {
+          present: {
             type: {
               title: { type: String, required: true },
               highlights: [{ type: String, required: true }],
