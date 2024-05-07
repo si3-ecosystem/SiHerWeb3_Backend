@@ -85,6 +85,7 @@ router.put("/", auth, async (req, res) => {
     dbWebpage._id,
     {
       cid: newCid,
+      data: body,
     },
     { new: true }
   )
