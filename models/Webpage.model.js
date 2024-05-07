@@ -33,6 +33,7 @@ const Webpage = mongoose.model(
             },
           ],
           categories: {
+            _id: false,
             type: {
               region: { type: String, required: true },
               superPower: [
@@ -116,6 +117,7 @@ const Webpage = mongoose.model(
           ],
           socialChannels: [
             {
+              _id: false,
               text: { type: String, required: true },
               url: { type: String, required: true },
             },
