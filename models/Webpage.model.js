@@ -42,7 +42,7 @@ const Webpage = mongoose.model(
                 },
               ],
               organizationAffiliations: [{ type: String }],
-              communityAffiliations: { type: String },
+              communityAffiliations: [{ type: String }],
             },
             required: true,
           },
@@ -69,8 +69,14 @@ const Webpage = mongoose.model(
               _id: false,
             },
           ],
-          buttonText: { type: String, required: true },
-          buttonLink: { type: String, required: true },
+          button: {
+            type: {
+              text: { type: String, required: true },
+              link: { type: String, required: true },
+            },
+            required: true,
+            _id: false,
+          },
         },
         vision: {
           title: { type: String, required: true },

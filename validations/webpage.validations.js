@@ -1,5 +1,5 @@
-const Joi = require("joi");
-const { validate } = require(".");
+const Joi = require("joi")
+const { validate } = require(".")
 
 const createWebpageSchema = Joi.object({
   navbar: Joi.object({
@@ -28,7 +28,6 @@ const createWebpageSchema = Joi.object({
       communityAffiliations: Joi.array()
         .items(Joi.string().required())
         .label("Community Affiliations"),
-      // communityAffiliations: Joi.string().label("Community Affiliations"),
     })
       .required()
       .label("Categories"),
@@ -36,7 +35,6 @@ const createWebpageSchema = Joi.object({
       path: Joi.string().required().label("User image path"),
       id: Joi.alternatives(Joi.string().allow(null)).label("User image id"),
     }),
-    // userimg: Joi.string().uri().required().label("User Image"),
     name: Joi.string().required().label("Name"),
     pronoun: Joi.string().required().label("Pronoun"),
   }),
@@ -50,7 +48,6 @@ const createWebpageSchema = Joi.object({
         "Video id"
       ),
     }).label("Video Object"),
-    // video: Joi.string().uri().required().label("Video"),
     links: Joi.array()
       .items({
         title: Joi.string().required().label("Link Title"),
@@ -59,8 +56,11 @@ const createWebpageSchema = Joi.object({
       })
       .required()
       .min(1),
-    buttonText: Joi.string().required().label("Button Text"),
-    buttonLink: Joi.string().uri().required().label("Button Link"),
+    text: "TIP IN CRYPTO",
+    button: Joi.object({
+      text: Joi.string().required().label("Button Text"),
+      link: Joi.string().uri().required().label("Button Link"),
+    }).required(),
   }),
   vision: Joi.object({
     title: Joi.string().required().label("Vision Title"),
@@ -108,12 +108,12 @@ const createWebpageSchema = Joi.object({
       .required()
       .label("Social Channels"),
   }),
-});
+})
 
 function validateCreateWebpage(data) {
-  return validate(data, createWebpageSchema);
+  return validate(data, createWebpageSchema)
 }
 
 module.exports = {
   validateCreateWebpage,
-};
+}
