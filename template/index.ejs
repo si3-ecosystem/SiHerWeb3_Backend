@@ -1,4 +1,28 @@
 <!DOCTYPE html>
+
+<% 
+  function isValidEmail(email) {
+    // Basic regex pattern for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+ function getUpdatedHref(url) {
+    // Check if the URL is a valid email address
+    if (isValidEmail(url)) {
+      return 'mailto:' + url; // Convert to email link
+    }
+
+    // Check if the URL starts with 'http://' or 'https://'
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url; // Already an HTTPS link
+    }
+
+    // If none of the above, assume it's a regular URL and prepend 'https://'
+    return 'https://' + url;
+  }
+%>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -1498,7 +1522,7 @@
         <% for (let index = 0; index < available.socialChannels.length; index++)
         { %>
         <a
-          href="<%= available.socialChannels[index].url %>"
+          href="<%= getUpdatedHref(available.socialChannels[index].url) %>"
           style="text-decoration: none; color: unset"
         >
           <div
@@ -1509,8 +1533,7 @@
               background-color: #ffffff1a;
             "
           >
-            <span><%= available.socialChannels[index].text %>:</span>
-            <span> <%= available.socialChannels[index].url %> </span>
+            <span><%= available.socialChannels[index].text %></span>
           </div>
         </a>
         <% } %>
