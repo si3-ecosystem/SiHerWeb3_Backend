@@ -6,12 +6,20 @@ const loginSchema = Joi.object({
   password: Joi.string().required().label("Password"),
 })
 
+const forgotPasswordSchema = Joi.object({
+  email: Joi.string().required().label("Email"),
+})
+
 const resetPasswordSchema = Joi.object({
   password: Joi.string().required().label("Password"),
 })
 
 function validateLoginUser(data) {
   return validate(data, loginSchema)
+}
+
+function validateForgotPassword(data) {
+  return validate(data, forgotPasswordSchema)
 }
 
 function validateResetPassword(data) {
@@ -21,4 +29,5 @@ function validateResetPassword(data) {
 module.exports = {
   validateLoginUser,
   validateResetPassword,
+  validateForgotPassword,
 }

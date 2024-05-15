@@ -8,6 +8,7 @@ const auth = require("../middlewares/auth.middleware")
 const {
   validateLoginUser,
   validateResetPassword,
+  validateForgotPassword,
 } = require("../validations/user.validations")
 const { encryptPassword, comparePassword } = require("../utils/password.utils")
 const { generateAuthToken } = require("../utils/auth.utils")
@@ -64,15 +65,23 @@ router.post("/", async (req, res) => {
   return res.send({ token })
 })
 
-router.post("/forgot-password", auth, async (req, res) => {
-  const { user } = req
+router.post("/forgot-password", async (req, res) => {
+  const { body } = req
+
+  const error = validateForgotPassword(body)
+  if (error) return res.status(400).send(error)
 
   const token = crypto.randomBytes(20).toString("hex")
 
-  await User.findByIdAndUpdate(user._id, { resetPasswordToken: token })
+  const user = await User.findOneAndUpdate(
+    { email: body.email },
+    { resetPasswordToken: token }
+  )
+
+  if(!user) return res.status(404).send("User not found")
 
   await sendEmail(
-    user.email,
+    body.email,
     "Password Reset Link",
     `https://kara-backend.vercel.app/reset-password?token=${token}`
   )
@@ -94,7 +103,7 @@ router.post("/reset-password", async (req, res) => {
     { password, resetPasswordToken: null }
   )
 
-  if(!user) return res.status(400).send("Could not update the user password")
+  if (!user) return res.status(400).send("Could not update the user password")
 
   return res.send("Password Reset")
 })
