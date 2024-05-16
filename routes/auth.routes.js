@@ -83,10 +83,10 @@ router.post("/forgot-password", async (req, res) => {
   await sendEmail(
     body.email,
     "Password Reset Link",
-    `https://kara-backend.vercel.app/reset-password?token=${token}`
+    `https://kara-backend.vercel.app/auth/reset-password?token=${token}`
   )
 
-  return res.send("Password Reset link was sent")
+  return res.status(400).send("Password Reset link was sent")
 })
 
 router.post("/reset-password", async (req, res) => {
@@ -105,7 +105,7 @@ router.post("/reset-password", async (req, res) => {
 
   if (!user) return res.status(400).send("Could not update the user password")
 
-  return res.send("Password Reset")
+  return res.send("Password reset Successsfully!")
 })
 
 module.exports = router
