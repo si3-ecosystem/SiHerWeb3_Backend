@@ -672,7 +672,7 @@
               font-weight: 400;
             "
           >
-            <%= value.description %>
+            <%- value.description.replaceAll('\n', '<br/>') %>
           </p>
         </div>
         <div class="mobile-gap-48" style="display: flex; gap: 80px; flex: 1">
@@ -1038,7 +1038,7 @@
               class="mobile-sm-font-12"
               style="color: #828282; font-size: 16px; font-weight: 400"
             >
-              <%= vision.description %>
+              <%- vision.description.replaceAll('\n', '<br/>') %>
             </p>
           </div>
         </div>
@@ -1411,7 +1411,7 @@
               padding: 60px;
             "
           >
-            <%= CV.future.text %>
+            <%- CV.future.text.replaceAll('\n', '<br/>') %>
           </div>
         </div>
       </div>
