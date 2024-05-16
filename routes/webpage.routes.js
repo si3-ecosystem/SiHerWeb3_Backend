@@ -47,14 +47,20 @@ router.post("/", auth, async (req, res) => {
 });
 
 router.get("/", auth, async (req, res) => {
-  const { user } = req
+  try {
+    const { user } = req
 
-  const webpage = await Webpage.findOne({ user: user._id })
-  
-  if(!webpage){
-    return res.status(404).json({message:"Webpage not found"})
+    const webpage = await Webpage.findOne({ user: user._id })
+    
+    if(!webpage){
+      return res.status(404).json({message:"Webpage not found"})
+    }
+    return res.send({ url: `${PINATA_GATEWAY}/${webpage?.cid}`, ...webpage?.toJSON() })
+  } catch (error) {
+    console.log(error);
+    return res.send({ url: "Server error.Please refresh the page" })
   }
-  return res.send({ url: `${PINATA_GATEWAY}/${webpage?.cid}`, ...webpage?.toJSON() })
+
 })
 
 router.put("/", auth, async (req, res) => {
