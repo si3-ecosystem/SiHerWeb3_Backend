@@ -21,6 +21,7 @@
     "express-fileupload": "^1.4.3",
     "joi": "^17.12.2",
     "jsonwebtoken": "^9.0.2",
+    "mailersend": "^2.2.0",
     "mongoose": "^8.2.0",
     "uuid": "^9.0.1"
   },

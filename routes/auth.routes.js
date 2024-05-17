@@ -12,7 +12,7 @@ const {
 } = require("../validations/user.validations")
 const { encryptPassword, comparePassword } = require("../utils/password.utils")
 const { generateAuthToken } = require("../utils/auth.utils")
-const { sendEmail } = require("../utils/email.utils")
+const { sendEmail, senderEmailService } = require("../utils/email.utils")
 
 const router = express.Router()
 
@@ -80,7 +80,7 @@ router.post("/forgot-password", async (req, res) => {
 
   if(!user) return res.status(404).send("User not found")
 
-  await sendEmail(
+  await senderEmailService(
     body.email,
     "Password Reset Link",
     `https://kara-backend.vercel.app/auth/reset-password?token=${token}`
