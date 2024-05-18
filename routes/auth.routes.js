@@ -12,7 +12,7 @@ const {
 } = require("../validations/user.validations")
 const { encryptPassword, comparePassword } = require("../utils/password.utils")
 const { generateAuthToken } = require("../utils/auth.utils")
-const { sendEmail, senderEmailService } = require("../utils/email.utils")
+const { senderEmailService } = require("../utils/email.utils")
 
 const router = express.Router()
 
@@ -78,7 +78,7 @@ router.post("/forgot-password", async (req, res) => {
     { resetPasswordToken: token }
   )
 
-  if(!user) return res.status(404).send("User not found")
+  if (!user) return res.status(404).send("User not found")
 
   await senderEmailService(
     body.email,
