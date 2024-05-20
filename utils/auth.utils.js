@@ -8,6 +8,7 @@ const generateAuthToken = (user) => {
 }
 
 const verifyAuthToken = (authToken) => {
+  console.log({authToken})
   const user = jwt.verify(authToken, jwtSecret)
   return user
 }
