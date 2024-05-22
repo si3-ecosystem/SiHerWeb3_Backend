@@ -83,7 +83,7 @@ router.post("/forgot-password", async (req, res) => {
   await senderEmailService(
     body.email,
     "Password Reset Link",
-    `https://siher.vercel.app/auth/reset-password?token=${token}`
+    `https://siher.si3.space/auth/reset-password?token=${token}`
   )
 
   return res.status(200).send("Password Reset link was sent")
